@@ -6,6 +6,7 @@ import { AuthResponse } from '../models/auth-response.model';
 import { IdleService } from './idle.service';
 import { Router } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -13,11 +14,11 @@ export class AuthService {
   private tokenService = inject(TokenService);
   private idleService = inject(IdleService);
 
-  private API = 'http://localhost:8081/auth';
+  private readonly url = `${environment.API_BASE}/auth`;
 
   login(username: string, password: string) {
     return this.http
-      .post<AuthResponse>(`${this.API}/login`, {
+      .post<AuthResponse>(`${this.url}/login`, {
         username,
         password,
       })
@@ -33,7 +34,7 @@ export class AuthService {
 
   refreshToken() {
     return this.http
-      .post<AuthResponse>(`${this.API}/refresh`, {
+      .post<AuthResponse>(`${this.url}/refresh`, {
         refreshToken: this.tokenService.getRefreshToken(),
       })
       .pipe(
@@ -50,7 +51,7 @@ export class AuthService {
     const refreshToken = this.tokenService.getRefreshToken();
 
     if (refreshToken) {
-      this.http.post(`${this.API}/logout`, { refreshToken }).subscribe();
+      this.http.post(`${this.url}/logout`, { refreshToken }).subscribe();
     }
 
     this.tokenService.clearTokens();
