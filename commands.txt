@@ -1,0 +1,32 @@
+npm i bootstrap
+
+npm i ngx-toastr
+
+npm install @angular/animations --save --force
+
+npm install sweetalert2
+
+npm i bootstrap-icons
+
+ng add ngx-bootstrap
+
+
+// Security - Token
+
+npm install jwt-decode
+
+// Testing
+
+npm install --save-dev karma karma-chrome-launcher karma-coverage karma-jasmine jasmine-core @angular-devkit/build-angular --force
+
+npm install --save-dev @angular/platform-browser-dynamic --force
+
+npm install --save-dev @types/jasmine --force
+
+npm uninstall vitest jsdom --force
+
+Remove-Item -Recurse -Force node_modules; Remove-Item package-lock.json; npm install
+
+ng test
+
+ng test --code-coverage

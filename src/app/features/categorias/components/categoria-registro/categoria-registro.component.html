@@ -1,0 +1,87 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-lg-11">
+      <div class="card shadow-sm form-card">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Registro de Categoría</h5>
+          <small class="text-muted">
+            Complete los datos para registrar una nueva categoría
+          </small>
+        </div>
+
+        <div class="card-body">
+          <form [formGroup]="frmCategorias" (ngSubmit)="save()">
+            <div class="mb-3">
+              <label class="form-label">Nombre corto</label>
+              <input
+                formControlName="nombreCorto"
+                class="form-control"
+                placeholder="Ej. Bebidas"
+                [ngClass]="{
+                  'is-invalid':
+                    fc.nombreCorto.invalid &&
+                    (fc.nombreCorto.touched || submitted)
+                }" />
+
+              @if (fc.nombreCorto.invalid && (fc.nombreCorto.touched || submitted)) {
+                <div class="invalid-feedback">
+                  @if (fc.nombreCorto.hasError('required')) {
+                    El nombre corto es requerido.
+                  }
+                  @if (fc.nombreCorto.hasError('minlength')) {
+                    Mínimo {{ fc.nombreCorto.errors?.['minlength']?.requiredLength }} caracteres.
+                  }
+                  @if (fc.nombreCorto.hasError('maxlength')) {
+                    Máximo {{ fc.nombreCorto.errors?.['maxlength']?.requiredLength }} caracteres.
+                  }
+                </div>
+              }
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Nombre largo</label>
+              <input
+                formControlName="nombreLargo"
+                class="form-control"
+                placeholder="Ej. Bebidas y refrescos"
+                [ngClass]="{
+                  'is-invalid':
+                    fc.nombreLargo.invalid &&
+                    (fc.nombreLargo.touched || submitted)
+                }" />
+
+              @if (fc.nombreLargo.invalid && (fc.nombreLargo.touched || submitted)) {
+                <div class="invalid-feedback">
+                  @if (fc.nombreLargo.hasError('required')) {
+                    El nombre largo es requerido.
+                  }
+                  @if (fc.nombreLargo.hasError('minlength')) {
+                    Mínimo {{ fc.nombreLargo.errors?.['minlength']?.requiredLength }} caracteres.
+                  }
+                  @if (fc.nombreLargo.hasError('maxlength')) {
+                    Máximo {{ fc.nombreLargo.errors?.['maxlength']?.requiredLength }} caracteres.
+                  }
+                </div>
+              }
+            </div>
+            <div class="d-flex justify-content-end gap-2 mt-4">
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                (click)="cancelar()">
+                Cancelar
+              </button>
+
+              <button
+                type="submit"
+                class="btn btn-primary">
+                Guardar
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
