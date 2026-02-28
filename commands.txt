@@ -30,3 +30,17 @@ Remove-Item -Recurse -Force node_modules; Remove-Item package-lock.json; npm ins
 ng test
 
 ng test --code-coverage
+
+
+Deployment
+
+Build Command
+npm install && npm run build
+
+Publish Directory
+dist/app-ventas-v2/browser
+
+Redirect and Rewrite Rules
+Source: /*
+Destination: /index.html
+Action: Rewrite
